@@ -16,8 +16,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/v1/chat")
 @RequiredArgsConstructor
@@ -39,10 +37,10 @@ public class ChatController {
         Sort.Direction sortDirection;
         if (sort != null && !sort.isEmpty() && !sort.equalsIgnoreCase("desc")) {
             sortDirection = Sort.Direction.DESC;
-        }else{
+        } else {
             sortDirection = Sort.Direction.ASC;
         }
-        Pageable pageable = PageRequest.of(page, size,sortDirection);
+        Pageable pageable = PageRequest.of(page, size, sortDirection);
         return threadService.getThreads(userDetails.getUserId(), pageable);
     }
 
